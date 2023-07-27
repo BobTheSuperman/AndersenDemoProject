@@ -17,5 +17,8 @@ namespace Domain.Core.Entities
         public int AuthorId { get; set; }
 
         public DateTime CreateDate { get; set; }
+
+        [Required]
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
     }
 }
