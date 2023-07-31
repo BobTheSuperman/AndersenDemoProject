@@ -4,9 +4,9 @@
     {
         Task<IEnumerable<TEntity>> GetAll();
 
-        Task<TEntity> GetByIdAsync(long id);
+        Task<TEntity> GetByIdAsync(int id);
 
-        Task<bool> DoesExistByIdAsync(long id);
+        Task<bool> DoesExistByIdAsync(int id);
 
         Task CreateAsync(TEntity entity);
 
@@ -14,6 +14,6 @@
 
         void Update(TEntity entity);
 
-        Task DeleteById(long id);
+        Task DeleteById(int id);
     }
 }

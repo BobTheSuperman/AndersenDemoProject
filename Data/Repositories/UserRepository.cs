@@ -8,5 +8,10 @@ namespace Infrastructure.Data.Repositories
         public UserRepository(ApplicationContext context) : base(context)
         {
         }
+
+        public bool IsEmailExists(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
+        }
     }
 }

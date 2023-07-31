@@ -1,9 +1,9 @@
 ﻿using Domain.Core.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Core.Entities
+namespace Domain.Core.Models.Blogs
 {
-    public class Blog : BaseEntity
+    public class BlogModel
     {
         [Required]
         [MaxLength(30, ErrorMessage = Constants.Validation.Blogs.TitleMaxLength)]
@@ -15,7 +15,5 @@ namespace Domain.Core.Entities
 
         [Required]
         public int AuthorId { get; set; }
-
-        public User Author { get; set; }
     }
 }

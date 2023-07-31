@@ -8,7 +8,7 @@ namespace Infrastructure.Data.Repositories
         where TEntity : BaseEntity
         where TContext : DbContext
     {
-        private readonly TContext _context;
+        protected readonly TContext _context;
         private readonly DbSet<TEntity> _entities;
 
         public Repository(TContext context)
@@ -37,7 +37,7 @@ namespace Infrastructure.Data.Repositories
             await _entities.AddRangeAsync(entities);
         }
 
-        public async Task DeleteById(long id)
+        public async Task DeleteById(int id)
         {
             var entity = await _entities.FirstOrDefaultAsync(entity => entity.Id == id);
 
@@ -49,17 +49,17 @@ namespace Infrastructure.Data.Repositories
             _entities.Remove(entity);
         }
 
-        public async Task<bool> DoesExistByIdAsync(long id)
+        public async Task<bool> DoesExistByIdAsync(int id)
         {
             return await _entities.AnyAsync(entity => entity.Id == id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return await _entities.ToListAsync<TEntity>();
+            return await _entities.AsNoTracking().ToListAsync<TEntity>();
         }
 
-        public async Task<TEntity> GetByIdAsync(long id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
             return await _entities.FirstOrDefaultAsync(entity => entity.Id == id);
         }
